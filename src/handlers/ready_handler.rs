@@ -5,6 +5,6 @@ pub struct ReadyHandler;
 #[poise::async_trait]
 impl EventHandler for ReadyHandler {
     async fn ready(&self, _ctx: Context, ready: Ready) {
-        println!("{} is online!", ready.user.name);
+        println!("{} is ready!", ready.user.name);
     }
 }

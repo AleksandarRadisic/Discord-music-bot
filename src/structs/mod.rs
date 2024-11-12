@@ -16,40 +16,6 @@ pub struct Data {
 pub type Error = Box<dyn std::error::Error + Send + Sync>;
 pub type Context<'a> = poise::Context<'a, Data, Error>;
 
-pub fn set_user_lock(
-    user_lock_map: &Arc<RwLock<HashMap<GuildId, HashMap<u64, bool>>>>,
-    guild_id: GuildId,
-    user_id: u64,
-    lock: bool,
-) {
-    let mut lock_map = user_lock_map.write().unwrap();
-    if let Some(user_map) = lock_map.get_mut(&guild_id) {
-        if let Some(is_locked) = user_map.get_mut(&user_id) {
-            *is_locked = lock;
-        } else {
-            user_map.insert(user_id, lock);
-        }
-    } else {
-        let mut new_user_map = HashMap::new();
-        new_user_map.insert(user_id, lock);
-        lock_map.insert(guild_id, new_user_map);
-    }
-}
-
-pub fn is_user_locked(
-    user_lock_map: &Arc<RwLock<HashMap<GuildId, HashMap<u64, bool>>>>,
-    guild_id: GuildId,
-    user_id: u64,
-) -> bool {
-    let lock_map = user_lock_map.read().unwrap();
-    if let Some(user_map) = lock_map.get(&guild_id) {
-        if let Some(&is_locked) = user_map.get(&user_id) {
-            return is_locked;
-        }
-    }
-    false
-}
-
 pub fn set_guild_loop(arc_guild_queue_loop: &Arc<RwLock<HashMap<GuildId, bool>>>, guild_id: GuildId, do_loop: bool){
     let mut guild_queue_loop = arc_guild_queue_loop.write().unwrap();
     if let Some(guild_loop) = guild_queue_loop.get_mut(&guild_id){
