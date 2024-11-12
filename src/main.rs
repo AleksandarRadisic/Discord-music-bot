@@ -19,14 +19,15 @@ use tracing::error;
 
 #[tokio::main]
 async fn main() {
+    std::env::set_var("RUST_LOG", "info");
+    tracing_subscriber::fmt::init();
+
     let config = load_config();
     let token = config.token.clone();
     let intents = serenity::GatewayIntents::GUILDS
         | serenity::GatewayIntents::GUILD_VOICE_STATES
         | serenity::GatewayIntents::GUILD_MESSAGES
         | serenity::GatewayIntents::MESSAGE_CONTENT;
-
-    tracing_subscriber::fmt::init();
 
     let options = poise::FrameworkOptions {
         commands: vec![
