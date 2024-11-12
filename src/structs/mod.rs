@@ -2,8 +2,7 @@ use std::{collections::HashMap, sync::{Arc, RwLock}};
 
 use reqwest::Client;
 use serenity::{all::{ChannelId, GuildId, Http}, prelude::TypeMapKey};
-use songbird::{events::{Event, EventContext, EventHandler as VoiceEventHandler}, input::AuxMetadata};
-use tracing::error;
+use songbird::input::AuxMetadata;
 
 use crate::config;
 

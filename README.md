@@ -13,7 +13,7 @@ Download FFmpeg from [FFmpeg's website](https://ffmpeg.org/) and ensure it is av
 You can download it here: [yt-dlp](https://github.com/yt-dlp/yt-dlp). Make sure yt-dlp is also available in your PATH.
 
 4. **Create `config.json`**  
-The bot configuration is stored in a config.json file. Copy and edit example_config.json to create this file, adding the necessary details such as bot token, prefix, and other configurations.
+Create config.json and insert prefix and discord app token (example_config.json).
 
 ## Usage  
 
