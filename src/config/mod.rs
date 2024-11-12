@@ -9,13 +9,6 @@ pub struct Config {
     pub token: String
 }
 
-#[derive(Debug, Deserialize, Clone)]
-pub struct UserInfo {
-    pub id: String,
-    pub disconnect_sound: Option<String>,
-    pub sound: Option<String>,
-}
-
 impl TypeMapKey for Config {
     type Value = Config;
 }
